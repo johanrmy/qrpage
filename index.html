@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Redirect Page</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+
+    <script>
+        const AS_URL_BASE = "http://localhost:5000"; // Reemplaza la URL con la URL de tu servidor Python
+        
+        var url = document.location.href;
+        var k = url.substr(url.lastIndexOf("k=") + 2);
+
+        if (k) {
+            fetch(AS_URL_BASE + '?k=' + k)
+                .then(r => r.text())
+                .then((r) => {
+                    if (r) {
+                        document.location.replace(r);
+                    }
+                })
+                .catch(err => console.log(err))
+        }
+    </script>
+</body>
+</html>
